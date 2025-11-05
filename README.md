@@ -1,6 +1,8 @@
 # TriMatFusion
 This guide will walk you through the complete pipeline for training the tri-modal fusion model, from data collection to analyzing the final results.
 
+This tutorial specifically uses the **[OCD-GMAE from AdsMT](https://github.com/schwallergroup/AdsMT)** as an example to demonstrate the workflow.
+
 The model leverages three distinct modalities:
 1.  **Graph Embeddings** (from GNNs like CGCNN)
 2.  **Text Embeddings** (from MatSciBERT on `robocrys` descriptions)
