@@ -1,0 +1,75 @@
+# config.yml
+# This is a single-model, single-job configuration file.
+
+Job:
+    job_name: "my_train_job"
+    reprocess: "False"    
+    load_model: "False"
+    save_model: "True"
+    model_path: "my_model.pth"
+    write_output: "True"
+    write_error: "True" # Added for error logging
+    seed: 42    
+
+    
+Processing:
+    #Whether to use "inmemory" or "large" format for pytorch-geometric dataset. Reccomend inmemory unless the dataset is too large
+    dataset_type: "inmemory"  
+    #Path to data files
+    data_path: "./data" 
+    #Path to target file within data_path
+    target_path: "text.csv"
+    #Method of obtaining atom idctionary: available:(provided, default)
+    dictionary_source: "default"   
+    #Path to atom dictionary file within data_path
+    dictionary_path: "atom_dict.json"     
+    #Format of data files (limit to those supported by ASE)
+    data_format: "cif"
+    #Print out processing info 
+    verbose: "True"
+    #graph specific settings 
+    graph_max_radius : 8.0
+    graph_max_neighbors : 12
+    voronoi: "False"
+    edge_features: "True"
+    graph_edge_length : 50 
+    #SM specific settings
+    SM_descriptor: "False"
+    #SOAP specific settings
+    SOAP_descriptor: "False"
+    SOAP_rcut : 8.0
+    SOAP_nmax : 6
+    SOAP_lmax : 4
+    SOAP_sigma : 0.3
+
+
+Training:     
+    #Index of target column in targets.csv
+    target_index: 0
+    #Loss functions (from pytorch) examples: l1_loss, mse_loss, binary_cross_entropy
+    loss: "l1_loss"       
+    #Ratios for train/val/test split out of a total of 1  
+    train_ratio: 0.8
+    val_ratio: 0.05
+    test_ratio: 0.15
+    #Training print out frequency (print per n number of epochs)
+    verbosity: 1
+    
+Models:     
+    dim1: 100
+    dim2: 150
+    pre_fc_count: 1
+    gc_count: 4  
+    post_fc_count: 3
+    pool: "global_mean_pool"
+    batch_norm: "True"
+    batch_track_stats: "True"
+    act: "relu"
+    dropout_rate: 0.4
+    epochs: 300   
+    lr: 0.0003
+    batch_size: 24
+    optimizer: "AdamW"
+    optimizer_args: {"weight_decay": 0.0005}
+    scheduler: "ReduceLROnPlateau"
+    scheduler_args: {"mode":"min","factor":0.5,"patience":10,"threshold_mode":"rel","threshold":0.001,"min_lr":0.000001}
