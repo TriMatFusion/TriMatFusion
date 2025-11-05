@@ -69,7 +69,11 @@ This is the most important step. Here, the code will:
 
 ### **ACTION REQUIRED: Modify `dataset.py` for your Fingerprint**
 
-> **Warning:** The `fingerprint` processing logic is **system-specific**. Our code is designed for doped CuS systems. You **must** modify the fingerprint generation section in `dataset.py` to match the attributes of your specific chemical system.
+> **Warning:** The `fingerprint` processing logic is **system-specific**. Different chemical systems often require different fingerprinting strategies to capture the relevant physics.
+>
+> For example, while a dataset like AdsMT might require statistical properties over all atoms in the structure, **our own research on doped CuS systems involves `focusing on dopants`** and their specific attributes.
+>
+> Because the optimal fingerprint varies by application, you **must** review and modify the `fingerprint` generation section within `dataset.py` to match the attributes and logic required by your specific chemical system.
 
 After ensuring `dataset.py` is configured for your system, the data will be processed **automatically when you first run `python main.py`**.
 
